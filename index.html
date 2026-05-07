@@ -3,308 +3,163 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Primesjobs - Find Your Dream Job</title>
-    
+    <title>Primesjobs - Find Your Next Opportunity</title>
     <style>
-        /* Basic Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
+        /* --- CSS STYLES --- */
         :root {
-            --primary-blue: #0056b3; /* Main Action Color */
-            --dark-blue: #002b5c;    /* Header & Footer */
-            --bg-light: #f4f7f9;     /* Light background */
+            --primary-blue: #0056b3;
+            --dark-blue: #002b5c;
+            --light-blue: #f0f5ff;
             --white: #ffffff;
-            --text-gray: #555;
+            --text-dark: #333;
+            --accent-orange: #ff9900;
         }
 
-        body {
-            background-color: var(--bg-light);
-            color: #333;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; scroll-behavior: smooth; }
+        body { background-color: var(--light-blue); color: var(--text-dark); }
 
-        /* Navigation Bar */
-        header {
-            background-color: var(--white);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
+        /* Navbar */
+        header { background: var(--white); box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; }
+        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 15px 8%; }
+        .logo { font-size: 28px; font-weight: 800; color: var(--dark-blue); text-decoration: none; cursor: pointer; }
+        .logo span { color: var(--primary-blue); }
 
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 8%;
-        }
+        .nav-links { display: flex; list-style: none; gap: 20px; align-items: center; }
+        .nav-links a { text-decoration: none; color: #444; font-weight: 600; cursor: pointer; border-bottom: 2px solid transparent; transition: 0.3s; }
+        .nav-links a:hover { color: var(--primary-blue); border-bottom: 2px solid var(--primary-blue); }
 
-        .logo {
-            font-size: 28px;
-            font-weight: 800;
-            color: var(--dark-blue);
-            text-decoration: none;
-        }
+        /* Buttons */
+        .btn { padding: 10px 20px; border-radius: 5px; border: none; font-weight: 600; cursor: pointer; transition: 0.3s; }
+        .btn-login { background: none; border: 1.5px solid var(--primary-blue); color: var(--primary-blue); margin-right: 10px; }
+        .btn-signup { background: var(--primary-blue); color: white; }
+        .btn-signup:hover { background: var(--dark-blue); }
 
-        .logo span {
-            color: var(--primary-blue);
-        }
-
-        .nav-links {
-            list-style: none;
-            display: flex;
-            gap: 25px;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: #444;
-            font-weight: 600;
-            transition: 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary-blue);
-        }
-
-        .auth-buttons .btn {
-            padding: 8px 20px;
-            border-radius: 4px;
-            text-decoration: none;
-            font-weight: 600;
-            margin-left: 10px;
-        }
-
-        .btn-login {
-            border: 1px solid var(--primary-blue);
-            color: var(--primary-blue);
-        }
-
-        .btn-post {
-            background-color: var(--primary-blue);
-            color: var(--white);
-        }
-
-        /* Hero / Search Section */
+        /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, var(--dark-blue), var(--primary-blue));
-            padding: 80px 8%;
-            text-align: center;
-            color: var(--white);
+            background: linear-gradient(rgba(0, 43, 92, 0.85), rgba(0, 86, 179, 0.85)), 
+                        url('https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=1350&q=80');
+            background-size: cover; background-position: center; padding: 80px 8%; text-align: center; color: white;
         }
+        .hero h1 { font-size: 45px; margin-bottom: 15px; }
 
-        .hero h1 {
-            font-size: 42px;
-            margin-bottom: 15px;
-        }
+        /* Job Cards */
+        .container { padding: 60px 8%; }
+        .section-title { margin-bottom: 30px; font-size: 26px; color: var(--dark-blue); border-left: 5px solid var(--primary-blue); padding-left: 15px; }
+        .job-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
+        .job-card { background: white; padding: 25px; border-radius: 12px; border: 1px solid #ddd; transition: 0.3s; }
+        .job-card:hover { transform: translateY(-8px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); border-color: var(--primary-blue); }
 
-        .search-box {
-            background: var(--white);
-            padding: 10px;
-            border-radius: 50px;
-            display: flex;
-            max-width: 800px;
-            margin: 30px auto 0;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        /* Modals (Popups) */
+        .modal {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6); justify-content: center; align-items: center; z-index: 2000;
         }
+        .modal-content { background: white; padding: 40px; border-radius: 15px; width: 100%; max-width: 400px; position: relative; }
+        .close-btn { position: absolute; top: 15px; right: 20px; font-size: 25px; cursor: pointer; }
+        form input { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 6px; outline: none; }
+        .submit-btn { width: 100%; padding: 12px; background: var(--primary-blue); color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; }
 
-        .search-box input {
-            flex: 1;
-            padding: 15px 25px;
-            border: none;
-            outline: none;
-            font-size: 16px;
-            border-radius: 50px;
-        }
-
-        .btn-search {
-            background-color: #ff9900; /* Contrast color for attention */
-            color: white;
-            border: none;
-            padding: 0 40px;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 16px;
-        }
-
-        /* Job Listings */
-        .container {
-            padding: 50px 8%;
-        }
-
-        .section-title {
-            margin-bottom: 30px;
-            font-size: 24px;
-            color: var(--dark-blue);
-            border-left: 5px solid var(--primary-blue);
-            padding-left: 15px;
-        }
-
-        .job-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-
-        .job-card {
-            background: var(--white);
-            padding: 25px;
-            border-radius: 8px;
-            border: 1px solid #ddd;
-            transition: 0.3s;
-            position: relative;
-        }
-
-        .job-card:hover {
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-            border-color: var(--primary-blue);
-        }
-
-        .job-card h3 {
-            color: var(--primary-blue);
-            margin-bottom: 8px;
-        }
-
-        .job-card .company-name {
-            font-weight: bold;
-            color: #333;
-            display: block;
-            margin-bottom: 15px;
-        }
-
-        .job-details {
-            font-size: 14px;
-            color: var(--text-gray);
-            line-height: 1.8;
-        }
-
-        .tags {
-            margin-top: 15px;
-        }
-
-        .tag {
-            background: #eef2f6;
-            padding: 4px 10px;
-            border-radius: 4px;
-            font-size: 12px;
-            margin-right: 5px;
-        }
-
-        .apply-btn {
-            display: block;
-            text-align: center;
-            background: var(--primary-blue);
-            color: white;
-            padding: 10px;
-            text-decoration: none;
-            margin-top: 20px;
-            border-radius: 4px;
-            font-weight: bold;
-        }
-
-        /* Footer */
-        footer {
-            background: var(--dark-blue);
-            color: white;
-            padding: 40px 8%;
-            text-align: center;
-            margin-top: 50px;
-        }
-
-        footer p {
-            opacity: 0.7;
-        }
+        footer { background: var(--dark-blue); color: white; text-align: center; padding: 40px; }
     </style>
 </head>
 <body>
 
+    <!-- Header -->
     <header>
         <nav class="navbar">
-            <a href="#" class="logo">Primes<span>jobs</span></a>
+            <a href="index.html" class="logo">Primes<span>jobs</span></a>
             <ul class="nav-links">
-                <li><a href="#">Jobs</a></li>
-                <li><a href="#">Companies</a></li>
-                <li><a href="#">Services</a></li>
+                <li><a href="#jobs">Find Jobs</a></li>
+                <li><a href="#companies">Companies</a></li>
+                <li><a href="#services">Services</a></li>
             </ul>
             <div class="auth-buttons">
-                <a href="#" class="btn btn-login">Login</a>
-                <a href="#" class="btn btn-post">Post Job</a>
+                <button class="btn btn-login" onclick="openModal('loginModal')">Login</button>
+                <button class="btn btn-signup" onclick="openModal('signupModal')">Post Job</button>
             </div>
         </nav>
     </header>
 
+    <!-- Hero Section -->
     <section class="hero">
-        <h1>Apni Dream Job Aaj Hi Payein</h1>
-        <p>1,00,000+ Jobs on Primesjobs for Professionals</p>
-        
-        <div class="search-box">
-            <input type="text" placeholder="Designation, Skills, Company...">
-            <input type="text" placeholder="Location (e.g. Noida)">
-            <button class="btn-search">Find Jobs</button>
-        </div>
+        <h1>Sahi Job, Sahi Career</h1>
+        <p>Primesjobs par aaj hi apna sapna sakar karein</p>
     </section>
 
-    <div class="container">
-        <h2 class="section-title">Latest Job Openings</h2>
-        
+    <!-- Jobs Section -->
+    <div class="container" id="jobs">
+        <h2 class="section-title">Latest Job Opportunities</h2>
         <div class="job-grid">
             <div class="job-card">
-                <h3>Frontend Developer</h3>
-                <span class="company-name">Tech Innovators Pvt Ltd</span>
-                <div class="job-details">
-                    <p>📍 Noida, India</p>
-                    <p>💼 2-5 Years Exp</p>
-                    <p>💰 ₹6,00,000 - ₹10,00,000 PA</p>
-                </div>
-                <div class="tags">
-                    <span class="tag">HTML</span>
-                    <span class="tag">CSS</span>
-                    <span class="tag">React</span>
-                </div>
-                <a href="#" class="apply-btn">Quick Apply</a>
+                <h3>Backend Developer</h3>
+                <p><strong>IBM India</strong> | Hyderabad</p>
+                <button class="submit-btn" style="margin-top:15px;" onclick="openModal('loginModal')">Apply Now</button>
             </div>
-
             <div class="job-card">
-                <h3>Digital Marketing Specialist</h3>
-                <span class="company-name">Growth Media Agency</span>
-                <div class="job-details">
-                    <p>📍 Mumbai (Remote)</p>
-                    <p>💼 1-3 Years Exp</p>
-                    <p>💰 ₹4,00,000 - ₹7,00,000 PA</p>
-                </div>
-                <div class="tags">
-                    <span class="tag">SEO</span>
-                    <span class="tag">SMM</span>
-                    <span class="tag">Ads</span>
-                </div>
-                <a href="#" class="apply-btn">Quick Apply</a>
-            </div>
-
-            <div class="job-card">
-                <h3>HR Manager</h3>
-                <span class="company-name">Primes Global Solutions</span>
-                <div class="job-details">
-                    <p>📍 Bangalore</p>
-                    <p>💼 5-8 Years Exp</p>
-                    <p>💰 ₹12,00,000 - ₹18,00,000 PA</p>
-                </div>
-                <div class="tags">
-                    <span class="tag">Recruitment</span>
-                    <span class="tag">Payroll</span>
-                </div>
-                <a href="#" class="apply-btn">Quick Apply</a>
+                <h3>UI/UX Designer</h3>
+                <p><strong>Creative Labs</strong> | Remote</p>
+                <button class="submit-btn" style="margin-top:15px;" onclick="openModal('loginModal')">Apply Now</button>
             </div>
         </div>
     </div>
 
+    <!-- Companies Section (Placeholder) -->
+    <div class="container" id="companies" style="background: #fff;">
+        <h2 class="section-title">Top Companies</h2>
+        <p>Amazon, Google, Microsoft, TATA, Reliance and 1000+ more.</p>
+    </div>
+
+    <!-- Services Section (Placeholder) -->
+    <div class="container" id="services">
+        <h2 class="section-title">Our Services</h2>
+        <p>Resume Writing, Career Counseling, Priority Applicant services.</p>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('loginModal')">&times;</span>
+            <h2>Login</h2>
+            <form onsubmit="alert('Login Successful!'); return false;">
+                <input type="email" placeholder="Email Address" required>
+                <input type="password" placeholder="Password" required>
+                <button type="submit" class="submit-btn">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div id="signupModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('signupModal')">&times;</span>
+            <h2>Post a Job</h2>
+            <form onsubmit="alert('Job Posting Dashboard Coming Soon!'); return false;">
+                <input type="text" placeholder="Company Name" required>
+                <input type="text" placeholder="Job Title" required>
+                <input type="email" placeholder="Contact Email" required>
+                <button type="submit" class="submit-btn">Post Now</button>
+            </form>
+        </div>
+    </div>
+
     <footer>
-        <p>&copy; 2026 Primesjobs.com - Designed for Success.</p>
+        <p>&copy; 2026 Primesjobs.com | Made with Love</p>
     </footer>
 
+    <!-- JavaScript For Interaction -->
+    <script>
+        function openModal(id) {
+            document.getElementById(id).style.display = "flex";
+        }
+        function closeModal(id) {
+            document.getElementById(id).style.display = "none";
+        }
+        // Window ke bahar click karne par band ho jaye
+        window.onclick = function(event) {
+            if (event.target.className === 'modal') {
+                event.target.style.display = "none";
+            }
+        }
+    </script>
 </body>
 </html>
