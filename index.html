@@ -3,162 +3,264 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Primesjobs - Find Your Next Opportunity</title>
+    <title>Primesjobs - Global Recruitment & Career Portal</title>
     <style>
-        /* --- CSS STYLES --- */
         :root {
-            --primary-blue: #0056b3;
-            --dark-blue: #002b5c;
-            --light-blue: #f0f5ff;
-            --white: #ffffff;
-            --text-dark: #333;
-            --accent-orange: #ff9900;
+            --tj-blue: #003366;
+            --tj-orange: #ff9900;
+            --bg-gray: #f4f7fa;
+            --border: #d1d8e0;
+            --text: #333;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; scroll-behavior: smooth; }
-        body { background-color: var(--light-blue); color: var(--text-dark); }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Roboto', Arial, sans-serif; }
+        body { background-color: var(--bg-gray); color: var(--text); }
 
-        /* Navbar */
-        header { background: var(--white); box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; }
-        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 15px 8%; }
-        .logo { font-size: 28px; font-weight: 800; color: var(--dark-blue); text-decoration: none; cursor: pointer; }
-        .logo span { color: var(--primary-blue); }
+        /* Top Header */
+        .top-header { background: #fff; padding: 5px 8%; border-bottom: 1px solid var(--border); display: flex; justify-content: flex-end; font-size: 11px; gap: 15px; color: #666; }
 
-        .nav-links { display: flex; list-style: none; gap: 20px; align-items: center; }
-        .nav-links a { text-decoration: none; color: #444; font-weight: 600; cursor: pointer; border-bottom: 2px solid transparent; transition: 0.3s; }
-        .nav-links a:hover { color: var(--primary-blue); border-bottom: 2px solid var(--primary-blue); }
+        header { background: var(--tj-blue); color: white; padding: 15px 8%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; }
+        .logo { font-size: 30px; font-weight: 900; text-decoration: none; color: white; letter-spacing: -1px; }
+        .logo span { color: var(--tj-orange); }
 
-        /* Buttons */
-        .btn { padding: 10px 20px; border-radius: 5px; border: none; font-weight: 600; cursor: pointer; transition: 0.3s; }
-        .btn-login { background: none; border: 1.5px solid var(--primary-blue); color: var(--primary-blue); margin-right: 10px; }
-        .btn-signup { background: var(--primary-blue); color: white; }
-        .btn-signup:hover { background: var(--dark-blue); }
+        .nav-links { display: flex; list-style: none; gap: 20px; }
+        .nav-links a { color: white; text-decoration: none; font-size: 14px; font-weight: bold; text-transform: uppercase; }
 
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(rgba(0, 43, 92, 0.85), rgba(0, 86, 179, 0.85)), 
-                        url('https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=1350&q=80');
-            background-size: cover; background-position: center; padding: 80px 8%; text-align: center; color: white;
-        }
-        .hero h1 { font-size: 45px; margin-bottom: 15px; }
+        /* Search Section */
+        .search-area { background: #fff; padding: 30px 8%; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .search-container { display: grid; grid-template-columns: 2fr 2fr 1fr 1fr; gap: 10px; max-width: 1200px; margin: 0 auto; }
+        .search-container input, .search-container select { padding: 12px; border: 1px solid var(--border); border-radius: 4px; outline: none; }
+        .search-btn { background: var(--tj-orange); color: white; border: none; font-weight: bold; cursor: pointer; border-radius: 4px; transition: 0.3s; }
+        .search-btn:hover { background: #e68a00; }
+
+        /* Main Layout */
+        .wrapper { display: grid; grid-template-columns: 260px 1fr 280px; gap: 20px; padding: 25px 8%; max-width: 1600px; margin: 0 auto; }
+
+        /* Sidebar Widgets */
+        .sidebar-widget { background: white; border: 1px solid var(--border); border-radius: 4px; padding: 15px; margin-bottom: 20px; }
+        .sidebar-widget h4 { font-size: 14px; color: var(--tj-blue); border-bottom: 2px solid var(--tj-light-blue); padding-bottom: 8px; margin-bottom: 12px; text-transform: uppercase; }
+        .sidebar-widget ul { list-style: none; font-size: 13px; }
+        .sidebar-widget ul li { padding: 8px 0; border-bottom: 1px solid #f0f0f0; cursor: pointer; color: #555; }
+        .sidebar-widget ul li:hover { color: var(--tj-orange); padding-left: 5px; transition: 0.2s; }
+
+        /* Hiring Banner */
+        .hiring-strip { grid-column: span 3; background: white; border: 1px solid var(--border); padding: 15px; margin-bottom: 10px; border-radius: 4px; }
+        .marquee-box { overflow: hidden; display: flex; align-items: center; gap: 40px; }
+        .comp-name { font-weight: 800; font-size: 14px; color: var(--tj-blue); white-space: nowrap; }
 
         /* Job Cards */
-        .container { padding: 60px 8%; }
-        .section-title { margin-bottom: 30px; font-size: 26px; color: var(--dark-blue); border-left: 5px solid var(--primary-blue); padding-left: 15px; }
-        .job-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
-        .job-card { background: white; padding: 25px; border-radius: 12px; border: 1px solid #ddd; transition: 0.3s; }
-        .job-card:hover { transform: translateY(-8px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); border-color: var(--primary-blue); }
+        .job-card { background: white; border: 1px solid var(--border); padding: 20px; margin-bottom: 15px; border-radius: 4px; position: relative; }
+        .job-card:hover { border-color: var(--tj-blue); box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .job-card h3 { color: var(--tj-blue); font-size: 18px; margin-bottom: 5px; }
+        .company-info { font-weight: bold; color: #444; font-size: 14px; margin-bottom: 10px; }
+        .job-meta { font-size: 12px; color: #777; margin-bottom: 15px; display: flex; gap: 15px; }
+        .job-desc { font-size: 13px; color: #555; line-height: 1.5; margin-bottom: 15px; }
+        .apply-now-btn { background: #28a745; color: white; border: none; padding: 8px 20px; border-radius: 3px; cursor: pointer; font-weight: bold; }
 
-        /* Modals (Popups) */
-        .modal {
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.6); justify-content: center; align-items: center; z-index: 2000;
-        }
-        .modal-content { background: white; padding: 40px; border-radius: 15px; width: 100%; max-width: 400px; position: relative; }
-        .close-btn { position: absolute; top: 15px; right: 20px; font-size: 25px; cursor: pointer; }
-        form input { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 6px; outline: none; }
-        .submit-btn { width: 100%; padding: 12px; background: var(--primary-blue); color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; }
+        /* Candidate Registration Form Modal */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; justify-content: center; align-items: center; }
+        .modal-content { background: white; width: 750px; border-radius: 8px; position: relative; padding: 0; overflow: hidden; max-height: 95vh; display: flex; flex-direction: column; }
+        .modal-header { background: var(--tj-blue); color: white; padding: 20px; text-align: center; position: relative; }
+        .modal-body { padding: 30px; overflow-y: auto; }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; font-size: 13px; font-weight: bold; margin-bottom: 5px; color: #555; }
+        .form-group input, .form-group select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; }
+        .full-row { grid-column: span 2; }
+        
+        .upload-section { background: #f9f9f9; border: 2px dashed var(--border); padding: 20px; text-align: center; margin-top: 10px; }
+        .fee-notice { background: #fff4e5; border: 1px solid #ff9900; padding: 15px; font-size: 12px; color: #856404; margin-top: 20px; border-radius: 4px; }
 
-        footer { background: var(--dark-blue); color: white; text-align: center; padding: 40px; }
+        .submit-btn { background: var(--tj-orange); color: white; border: none; padding: 15px; width: 100%; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 20px; }
+
+        footer { background: #222; color: #bbb; padding: 40px 8%; text-align: center; font-size: 13px; margin-top: 40px; }
     </style>
 </head>
 <body>
 
-    <!-- Header -->
+    <div class="top-header">
+        <span>Candidate Hotline: +91 XXXX XXX XXX</span>
+        <span>Employer Zone</span>
+        <span>Career Services</span>
+    </div>
+
     <header>
-        <nav class="navbar">
-            <a href="index.html" class="logo">Primes<span>jobs</span></a>
-            <ul class="nav-links">
-                <li><a href="#jobs">Find Jobs</a></li>
-                <li><a href="#companies">Companies</a></li>
-                <li><a href="#services">Services</a></li>
-            </ul>
-            <div class="auth-buttons">
-                <button class="btn btn-login" onclick="openModal('loginModal')">Login</button>
-                <button class="btn btn-signup" onclick="openModal('signupModal')">Post Job</button>
-            </div>
-        </nav>
+        <a href="#" class="logo">Primes<span>jobs</span></a>
+        <ul class="nav-links">
+            <li><a href="#">Jobs</a></li>
+            <li><a href="#">Companies</a></li>
+            <li><a href="#">International</a></li>
+            <li><a href="#">Services</a></li>
+        </ul>
+        <div>
+            <button class="apply-now-btn" style="background:var(--tj-orange);" onclick="openForm()">REGISTER FREE</button>
+        </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <h1>Sahi Job, Sahi Career</h1>
-        <p>Primesjobs par aaj hi apna sapna sakar karein</p>
+    <section class="search-area">
+        <div class="search-container">
+            <input type="text" placeholder="Designation, Skills (e.g. Mechanical Engineer)">
+            <input type="text" placeholder="Location (Mumbai, Dubai, Singapore...)">
+            <select>
+                <option>Experience</option>
+                <option>0-2 Yrs</option>
+                <option>3-5 Yrs</option>
+                <option>5+ Yrs</option>
+            </select>
+            <button class="search-btn">SEARCH JOBS</button>
+        </div>
     </section>
 
-    <!-- Jobs Section -->
-    <div class="container" id="jobs">
-        <h2 class="section-title">Latest Job Opportunities</h2>
-        <div class="job-grid">
-            <div class="job-card">
-                <h3>Backend Developer</h3>
-                <p><strong>IBM India</strong> | Hyderabad</p>
-                <button class="submit-btn" style="margin-top:15px;" onclick="openModal('loginModal')">Apply Now</button>
-            </div>
-            <div class="job-card">
-                <h3>UI/UX Designer</h3>
-                <p><strong>Creative Labs</strong> | Remote</p>
-                <button class="submit-btn" style="margin-top:15px;" onclick="openModal('loginModal')">Apply Now</button>
-            </div>
+    <div class="wrapper">
+        <!-- Hiring Banner -->
+        <div class="hiring-strip">
+            <span style="font-size: 12px; font-weight: bold; color: #777; margin-right: 20px;">TOP HIRING NOW:</span>
+            <marquee behavior="scroll" direction="left" scrollamount="6">
+                <span class="comp-name">Julphar</span> | <span class="comp-name">Saudi Aramco</span> | <span class="comp-name">Tata Projects Ltd.</span> | <span class="comp-name">ADNOC</span> | <span class="comp-name">Petrofac</span> | <span class="comp-name">Neopharma</span> | <span class="comp-name">HCC</span> | <span class="comp-name">Worley Parsons</span> | <span class="comp-name">Globalpharma</span>
+            </marquee>
         </div>
+
+        <!-- Left Sidebar -->
+        <aside>
+            <div class="sidebar-widget">
+                <h4>Pharma & Healthcare</h4>
+                <ul>
+                    <li>Julphar Industries</li>
+                    <li>Neopharma</li>
+                    <li>LifePharma</li>
+                    <li>Globalpharma</li>
+                    <li>Medpharma</li>
+                    <li>Pharmax Pharmaceuticals</li>
+                </ul>
+            </div>
+            <div class="sidebar-widget">
+                <h4>Engineering & EPC</h4>
+                <ul>
+                    <li>HCC</li>
+                    <li>Tata Projects Ltd.</li>
+                    <li>Petrofac</li>
+                    <li>Saudi Aramco</li>
+                    <li>ADNOC</li>
+                    <li>Worley Parsons</li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Main Feed -->
+        <main>
+            <h2 style="font-size: 20px; margin-bottom: 20px; color: var(--tj-blue);">Recommended Jobs for You</h2>
+
+            <!-- Job 1 -->
+            <div class="job-card">
+                <h3>Production Head (Pharmaceuticals)</h3>
+                <div class="company-info">Julphar (Gulf Pharmaceutical Industries)</div>
+                <div class="job-meta">
+                    <span>📍 Dubai / Abu Dhabi</span>
+                    <span>💼 8-12 Years</span>
+                </div>
+                <p class="job-desc">Leading pharmaceutical manufacturing operations, ensuring GMP compliance and international quality standards in Gulf regions...</p>
+                <button class="apply-now-btn" onclick="openForm()">Quick Apply</button>
+            </div>
+
+            <!-- Job 2 -->
+            <div class="job-card">
+                <h3>Senior Project Engineer</h3>
+                <div class="company-info">Tata Projects Ltd. / Saudi Aramco</div>
+                <div class="job-meta">
+                    <span>📍 Mumbai / Saudi Arabia</span>
+                    <span>💼 5-10 Years</span>
+                </div>
+                <p class="job-desc">Handling large scale infrastructure and Oil & Gas projects. Coordination with international stakeholders for EPC projects...</p>
+                <button class="apply-now-btn" onclick="openForm()">Quick Apply</button>
+            </div>
+        </main>
+
+        <!-- Right Sidebar -->
+        <aside>
+            <div class="sidebar-widget" style="background: var(--tj-blue); color: white;">
+                <h4 style="color:white; border-color:rgba(255,255,255,0.2)">International Jobs</h4>
+                <p style="font-size: 12px; margin-bottom: 10px;">Hiring for Singapore, USA, Russia, Maldives, Qatar, and Oman.</p>
+                <button class="search-btn" style="width: 100%; background: #fff; color: var(--tj-blue);" onclick="openForm()">Explore Now</button>
+            </div>
+            <div class="sidebar-widget">
+                <h4>Preferred Locations</h4>
+                <ul style="color: #0066cc;">
+                    <li>Mumbai & Pune</li>
+                    <li>Bangalore & Gurugram</li>
+                    <li>Chennai</li>
+                    <li>Dubai & Singapore</li>
+                </ul>
+            </div>
+        </aside>
     </div>
 
-    <!-- Companies Section (Placeholder) -->
-    <div class="container" id="companies" style="background: #fff;">
-        <h2 class="section-title">Top Companies</h2>
-        <p>Amazon, Google, Microsoft, TATA, Reliance and 1000+ more.</p>
-    </div>
-
-    <!-- Services Section (Placeholder) -->
-    <div class="container" id="services">
-        <h2 class="section-title">Our Services</h2>
-        <p>Resume Writing, Career Counseling, Priority Applicant services.</p>
-    </div>
-
-    <!-- Login Modal -->
-    <div id="loginModal" class="modal">
+    <!-- Application Modal -->
+    <div id="regModal" class="modal">
         <div class="modal-content">
-            <span class="close-btn" onclick="closeModal('loginModal')">&times;</span>
-            <h2>Login</h2>
-            <form onsubmit="alert('Login Successful!'); return false;">
-                <input type="email" placeholder="Email Address" required>
-                <input type="password" placeholder="Password" required>
-                <button type="submit" class="submit-btn">Login</button>
-            </form>
-        </div>
-    </div>
+            <div class="modal-header">
+                <h2>Candidate Registration Portal</h2>
+                <span style="position:absolute; right:20px; top:20px; cursor:pointer; font-size:24px;" onclick="closeForm()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="applicationForm">
+                    <h4 style="margin-bottom: 15px; color: var(--tj-blue);">👤 Candidate Details</h4>
+                    <div class="form-grid">
+                        <div class="form-group"><label>Full Name</label><input type="text" placeholder="As per Passport/Aadhar" required></div>
+                        <div class="form-group"><label>Contact Number</label><input type="tel" placeholder="+91" required></div>
+                        <div class="form-group"><label>Email ID</label><input type="email" placeholder="example@mail.com" required></div>
+                        <div class="form-group"><label>Preferred Designation</label><input type="text" placeholder="e.g. Mechanical Engineer" required></div>
+                        <div class="form-group"><label>Current Salary (Annual)</label><input type="text" placeholder="e.g. 8,00,000"></div>
+                        <div class="form-group"><label>Expected Salary</label><input type="text" placeholder="Expected Package"></div>
+                        
+                        <div class="form-group full-row">
+                            <label>Preferred Job Location</label>
+                            <select required>
+                                <option value="">Select Location</option>
+                                <optgroup label="India">
+                                    <option>Mumbai</option><option>Pune</option><option>Chennai</option><option>Bangalore</option><option>Gurugram</option>
+                                </optgroup>
+                                <optgroup label="International">
+                                    <option>Dubai / Abu Dhabi</option><option>Singapore</option><option>Saudi Arabia</option><option>Oman / Qatar</option><option>USA / Russia</option><option>Maldives</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                    </div>
 
-    <!-- Signup Modal -->
-    <div id="signupModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal('signupModal')">&times;</span>
-            <h2>Post a Job</h2>
-            <form onsubmit="alert('Job Posting Dashboard Coming Soon!'); return false;">
-                <input type="text" placeholder="Company Name" required>
-                <input type="text" placeholder="Job Title" required>
-                <input type="email" placeholder="Contact Email" required>
-                <button type="submit" class="submit-btn">Post Now</button>
-            </form>
+                    <h4 style="margin: 20px 0 10px; color: var(--tj-blue);">📎 Attachments</h4>
+                    <div class="upload-section">
+                        <label style="display:block; margin-bottom:10px;">Select Resume & ID Proof (Aadhar/PAN/Voter ID)</label>
+                        <input type="file" multiple required>
+                    </div>
+
+                    <div class="fee-notice">
+                        <strong>💳 Registration Fee: ₹8,000</strong><br>
+                        Payment only after client company contacts you and interview is scheduled. 
+                        Refundable (after GST) if not selected after 3–4 interviews.
+                    </div>
+
+                    <div style="margin-top:20px;">
+                        <input type="checkbox" required id="agree"> <label for="agree" style="font-weight:bold; font-size:13px;">Are you willing to proceed with Primesjobs terms?</label>
+                    </div>
+
+                    <button type="submit" class="submit-btn">SUBMIT YOUR PROFILE</button>
+                </form>
+            </div>
         </div>
     </div>
 
     <footer>
-        <p>&copy; 2026 Primesjobs.com | Made with Love</p>
+        <p>&copy; 2026 Primesjobs.com - Global Recruitment Partners. All Rights Reserved.</p>
+        <p style="margin-top:10px; font-size:11px;">Mumbai | Dubai | Singapore | Riyadh</p>
     </footer>
 
-    <!-- JavaScript For Interaction -->
     <script>
-        function openModal(id) {
-            document.getElementById(id).style.display = "flex";
-        }
-        function closeModal(id) {
-            document.getElementById(id).style.display = "none";
-        }
-        // Window ke bahar click karne par band ho jaye
-        window.onclick = function(event) {
-            if (event.target.className === 'modal') {
-                event.target.style.display = "none";
-            }
+        function openForm() { document.getElementById('regModal').style.display = 'flex'; }
+        function closeForm() { document.getElementById('regModal').style.display = 'none'; }
+        
+        document.getElementById('applicationForm').onsubmit = function(e) {
+            e.preventDefault();
+            alert("Success! Your profile and documents have been submitted to Primesjobs database. Our team will review and contact you shortly.");
+            closeForm();
         }
     </script>
 </body>
