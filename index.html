@@ -1216,7 +1216,95 @@ footer {
         <div class="agree-row">
           <input type="checkbox" id="b_agree" required>
           <label for="b_agree">I understand the fee structure and agree to proceed. I authorize Primesjobs to share my profile with relevant hiring partners.</label>
+        </div> <!-- PAYMENT SECTION -->
+<div id="paymentSection" style="display:none; margin:20px 0;">
+
+  <div style="
+    background:white;
+    border:1px solid var(--light);
+    border-radius:16px;
+    padding:24px;
+  ">
+
+    <div style="
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin-bottom:18px;
+    ">
+      <div style="font-size:24px;">💳</div>
+      <div>
+        <div style="font-weight:700; color:var(--navy); font-size:16px;">
+          Complete Registration Payment
         </div>
+        <div style="font-size:13px; color:var(--gray);">
+          Pay ₹8,000 securely using any UPI app
+        </div>
+      </div>
+    </div>
+
+    <!-- PAYMENT APPS -->
+    <div style="
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:14px;
+      margin-bottom:20px;
+    ">
+
+      <a href="upi://pay?pa=YOURUPI@upi&pn=Primesjobs&am=8000&cu=INR"
+         class="upi-btn">
+         <span>🟣</span> PhonePe
+      </a>
+
+      <a href="upi://pay?pa=YOURUPI@upi&pn=Primesjobs&am=8000&cu=INR"
+         class="upi-btn">
+         <span>🟢</span> Google Pay
+      </a>
+
+      <a href="upi://pay?pa=YOURUPI@upi&pn=Primesjobs&am=8000&cu=INR"
+         class="upi-btn">
+         <span>🔵</span> Paytm
+      </a>
+
+      <a href="upi://pay?pa=YOURUPI@upi&pn=Primesjobs&am=8000&cu=INR"
+         class="upi-btn">
+         <span>🟠</span> BHIM UPI
+      </a>
+
+      <a href="upi://pay?pa=YOURUPI@upi&pn=Primesjobs&am=8000&cu=INR"
+         class="upi-btn">
+         <span>🟡</span> Amazon Pay
+      </a>
+
+      <a href="upi://pay?pa=YOURUPI@upi&pn=Primesjobs&am=8000&cu=INR"
+         class="upi-btn">
+         <span>🏦</span> Any UPI App
+      </a>
+
+    </div>
+
+    <!-- QR -->
+    <div style="text-align:center;">
+      <img src="YOUR_QR_IMAGE_LINK"
+           alt="UPI QR"
+           style="
+             width:220px;
+             max-width:100%;
+             border-radius:14px;
+             border:1px solid var(--light);
+           ">
+
+      <div style="
+        margin-top:12px;
+        font-size:13px;
+        color:var(--gray);
+      ">
+        Scan QR using any UPI app
+      </div>
+    </div>
+
+  </div>
+</div>
         <button type="submit" class="submit-btn">
           <span>Submit via WhatsApp</span>
           <span>→</span>
