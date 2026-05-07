@@ -3,67 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Primesjobs | Global Recruitment Leader</title>
+    <title>Primesjobs - Global Recruitment & Career Portal</title>
     <style>
         :root {
             --primary: #003366; --accent: #ff9900; --success: #25D366;
-            --light-bg: #f8f9fa; --white: #ffffff; --text: #333;
+            --bg-gray: #f4f7fa; --white: #ffffff; --text: #333;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; scroll-behavior: smooth; }
-        body { background-color: var(--light-bg); color: var(--text); line-height: 1.6; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; scroll-behavior: smooth; }
+        body { background-color: var(--bg-gray); color: var(--text); line-height: 1.6; }
 
-        /* Header */
-        header { background: var(--primary); color: white; padding: 15px 8%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        /* Navigation */
+        header { background: var(--primary); color: white; padding: 15px 8%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
         .logo { font-size: 32px; font-weight: 900; text-decoration: none; color: white; }
         .logo span { color: var(--accent); }
-        .nav-links a { color: white; text-decoration: none; margin-left: 25px; font-weight: 600; font-size: 14px; transition: 0.3s; }
-        .nav-links a:hover { color: var(--accent); }
+        .nav-links a { color: white; text-decoration: none; margin-left: 25px; font-weight: 600; font-size: 14px; }
 
         /* Hero Section */
-        .hero { background: linear-gradient(45deg, rgba(0,51,102,0.9), rgba(0,51,102,0.7)), url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1500&q=80'); 
-                background-size: cover; background-position: center; padding: 120px 8%; color: white; text-align: center; }
-        .hero h1 { font-size: 48px; margin-bottom: 20px; }
-        .hero p { font-size: 20px; max-width: 800px; margin: 0 auto 30px; opacity: 0.9; }
-
-        /* Section Styling */
-        .section { padding: 80px 8%; }
-        .section-title { font-size: 36px; color: var(--primary); text-align: center; margin-bottom: 50px; position: relative; }
-        .section-title::after { content: ''; width: 80px; height: 5px; background: var(--accent); position: absolute; bottom: -15px; left: 50%; transform: translateX(-50%); }
+        .hero { 
+            background: linear-gradient(rgba(0,51,102,0.8), rgba(0,51,102,0.8)), url('https://images.unsplash.com/photo-1454165833767-027ffea9e77b?auto=format&fit=crop&w=1500&q=80');
+            background-size: cover; background-position: center; padding: 100px 8%; color: white; text-align: center; 
+        }
+        .hero h1 { font-size: 45px; margin-bottom: 20px; }
+        .hero p { font-size: 18px; max-width: 700px; margin: 0 auto; opacity: 0.9; }
 
         /* About Us */
-        .about-content { max-width: 1000px; margin: 0 auto; font-size: 18px; color: #555; text-align: justify; }
-        .about-content p { margin-bottom: 20px; }
+        .section { padding: 80px 8%; }
+        .section-title { font-size: 32px; color: var(--primary); text-align: center; margin-bottom: 40px; position: relative; }
+        .section-title::after { content: ''; width: 70px; height: 5px; background: var(--accent); position: absolute; bottom: -12px; left: 50%; transform: translateX(-50%); }
+        .about-box { max-width: 1000px; margin: 0 auto; text-align: justify; color: #555; font-size: 17px; }
 
         /* Success Stories Cards */
-        .success-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .success-card { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); border-top: 5px solid var(--accent); }
-        .success-card p { font-style: italic; color: #666; margin-bottom: 20px; }
-        .success-card .user { display: flex; align-items: center; gap: 15px; }
-        .success-card .user img { width: 50px; height: 50px; border-radius: 50%; background: #ddd; }
-        .success-card .user h4 { color: var(--primary); font-size: 16px; }
+        .success-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-top: 30px; }
+        .success-card { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border-left: 6px solid var(--accent); }
+        .success-card p { font-style: italic; color: #666; margin-bottom: 15px; }
+        .success-card h4 { color: var(--primary); }
 
-        /* Job Cards */
-        .job-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        /* Job Grid */
+        .job-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
         .job-card { background: white; border: 1px solid #ddd; padding: 25px; border-radius: 12px; transition: 0.3s; }
-        .job-card:hover { transform: translateY(-10px); border-color: var(--primary); }
-        .job-card h3 { color: var(--primary); margin-bottom: 10px; }
-        .apply-btn { background: var(--success); color: white; border: none; padding: 12px; width: 100%; border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 15px; transition: 0.3s; }
-        .apply-btn:hover { background: #1ebe5d; }
+        .job-card:hover { transform: translateY(-5px); border-color: var(--primary); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .job-card h3 { color: var(--primary); margin-bottom: 8px; }
+        .comp-label { color: var(--accent); font-weight: bold; font-size: 13px; text-transform: uppercase; }
+        .apply-btn { background: var(--success); color: white; border: none; padding: 12px; width: 100%; border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 15px; font-size: 15px; }
 
-        /* Contact Section */
-        .contact-box { background: white; display: grid; grid-template-columns: 1fr 1fr; gap: 50px; padding: 40px; border-radius: 20px; box-shadow: 0 15px 40px rgba(0,0,0,0.1); }
-        .whatsapp-contact { background: #e8f9f0; padding: 30px; border-radius: 15px; text-align: center; }
-        .wa-num { font-size: 24px; font-weight: bold; color: var(--success); display: block; margin: 15px 0; }
+        /* Big Registration Form */
+        .reg-form-container { background: white; padding: 40px; border-radius: 20px; box-shadow: 0 15px 40px rgba(0,0,0,0.1); max-width: 900px; margin: 0 auto; }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; font-weight: bold; margin-bottom: 8px; font-size: 14px; color: #444; }
+        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 8px; outline: none; }
+        .full-width { grid-column: span 2; }
+        .upload-area { border: 2px dashed #bbb; padding: 25px; text-align: center; border-radius: 10px; background: #fafafa; cursor: pointer; }
 
-        /* Modal Form */
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 2000; justify-content: center; align-items: center; }
-        .modal-content { background: white; width: 90%; max-width: 550px; padding: 40px; border-radius: 20px; position: relative; }
-        .form-group { margin-bottom: 20px; }
-        .form-group label { display: block; margin-bottom: 8px; font-weight: bold; font-size: 14px; }
-        .form-group input, .form-group select { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 8px; }
-        
-        footer { background: var(--primary); color: #ccc; padding: 50px 8%; text-align: center; }
+        .fee-alert { background: #fff3cd; color: #856404; padding: 15px; border-radius: 8px; border: 1px solid #ffeeba; margin: 20px 0; font-size: 14px; }
+
+        /* Modal */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; justify-content: center; align-items: center; padding: 20px; }
+        .modal-content { background: white; width: 100%; max-width: 800px; padding: 30px; border-radius: 20px; position: relative; max-height: 90vh; overflow-y: auto; }
+
+        footer { background: var(--primary); color: #ccc; padding: 40px 8%; text-align: center; }
+
+        @media (max-width: 768px) { .form-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -71,154 +72,190 @@
     <header>
         <a href="#" class="logo">Primes<span>jobs</span></a>
         <nav class="nav-links">
-            <a href="#about">About Us</a>
-            <a href="#success">Success Stories</a>
-            <a href="#jobs">Current Jobs</a>
-            <a href="#contact">Contact</a>
+            <a href="#about">About</a>
+            <a href="#success">1000+ Placements</a>
+            <a href="#jobs">Jobs</a>
+            <a href="#register">Register Now</a>
         </nav>
     </header>
 
     <section class="hero">
-        <h1>Gateway to Your Global Career</h1>
-        <p>Expert recruitment services for Healthcare, Pharma, and Engineering professionals looking for opportunities in India and Abroad.</p>
-        <button class="apply-btn" style="width: auto; padding: 15px 40px; font-size: 18px;" onclick="location.href='#jobs'">Browse Jobs Now</button>
+        <h1>Connect with Global MNCs</h1>
+        <p>Hiring Partner for Julphar, Tata Projects, Saudi Aramco & more. Your dream career starts here.</p>
     </section>
 
-    <!-- About Us Section -->
+    <!-- About Section -->
     <section class="section" id="about">
         <h2 class="section-title">About Primesjobs</h2>
-        <div class="about-content">
-            <p>Primesjobs is a leading global human resource consultancy that specializes in high-end recruitment for specialized sectors like Pharmaceuticals, Engineering, Oil & Gas, and Healthcare. With over a decade of experience, we have built an unshakeable reputation for connecting the right talent with world-class MNCs such as <strong>Saudi Aramco, Tata Projects, Julphar, and Neopharma.</strong></p>
-            <p>Our mission is to empower professionals by providing them access to life-changing career opportunities across various geographies, including <strong>Dubai, Singapore, USA, and India.</strong> We don't just find you a job; we manage your career transition, from interview scheduling to document verification. Our transparent process and dedicated support team ensure that every candidate receives the attention they deserve, making us a trusted partner for over 1000+ successfully placed professionals worldwide.</p>
+        <div class="about-box">
+            <p>Primesjobs is a premier international recruitment agency dedicated to bridging the gap between top-tier talent and world-renowned organizations. With a specialized focus on the <strong>Healthcare, Pharmaceutical, Engineering, and Oil & Gas</strong> sectors, we provide end-to-end recruitment solutions that cater to both domestic and international markets.</p>
+            <p style="margin-top: 15px;">Our extensive network includes industry giants such as <strong>Saudi Aramco, ADNOC, Julphar, Neopharma, and Tata Projects Ltd.</strong> We pride ourselves on our transparent process, expert career counseling, and a remarkable track record of over <strong>1000+ successful candidate placements</strong> in countries like Dubai, Singapore, Saudi Arabia, and India.</p>
         </div>
     </section>
 
-    <!-- 1000+ Success Stories Section -->
+    <!-- Success Stories -->
     <section class="section" id="success" style="background: #edf2f7;">
         <h2 class="section-title">1000+ Success Stories</h2>
         <div class="success-grid">
             <div class="success-card">
-                <p>"Primesjobs helped me land a Production Head role at Julphar in Dubai. The process was smooth, and they guided me through every step. Highly recommended for pharma professionals!"</p>
-                <div class="user">
-                    <div><h4>Arun Kumar</h4><small>Placed at Julphar, Dubai</small></div>
-                </div>
+                <p>"Primesjobs helped me secure a senior engineering role in Saudi Arabia. The entire process from registration to visa was handled professionally."</p>
+                <h4>- Rajesh Khanna</h4><small>Project Engineer</small>
             </div>
             <div class="success-card">
-                <p>"I was skeptical about international jobs, but Tata Projects through Primesjobs changed my life. I'm now working as a Sr. Project Engineer in Oman."</p>
-                <div class="user">
-                    <div><h4>Sandeep Reddy</h4><small>Placed at Tata Projects</small></div>
-                </div>
+                <p>"I am now working with Neopharma in Dubai, all thanks to the team at Primesjobs. The registration fee is a small investment for such a big career jump."</p>
+                <h4>- Dr. Amit Sharma</h4><small>QA Manager</small>
             </div>
             <div class="success-card">
-                <p>"The ₹8000 registration fee is worth it because the interview calls you get are from genuine MNCs. I am currently working in Singapore as a Lead Planner."</p>
-                <div class="user">
-                    <div><h4>Meera Pathak</h4><small>Placed in Singapore</small></div>
-                </div>
+                <p>"The best recruitment portal for Gulf jobs. They scheduled 3 interviews for me within a month. Highly recommended!"</p>
+                <h4>- Priya Singh</h4><small>Operations Lead</small>
             </div>
         </div>
     </section>
 
     <!-- Jobs Section -->
     <section class="section" id="jobs">
-        <h2 class="section-title">Current Opportunities</h2>
+        <h2 class="section-title">Hiring Companies & Openings</h2>
         <div class="job-grid">
             <div class="job-card">
-                <h3>Mechanical Engineer</h3>
+                <span class="comp-label">Pharma</span>
+                <h3>Production Head</h3>
+                <p><strong>Julphar / Neopharma</strong></p>
+                <p>📍 Dubai | 💼 8-12 Yrs</p>
+                <button class="apply-btn" onclick="openModal('Production Head')">QUICK APPLY</button>
+            </div>
+            <div class="job-card">
+                <span class="comp-label">Engineering</span>
+                <h3>Project Manager</h3>
+                <p><strong>Tata Projects / HCC</strong></p>
+                <p>📍 India / Singapore | 💼 10+ Yrs</p>
+                <button class="apply-btn" onclick="openModal('Project Manager')">QUICK APPLY</button>
+            </div>
+            <div class="job-card">
+                <span class="comp-label">Oil & Gas</span>
+                <h3>Safety Engineer</h3>
                 <p><strong>Saudi Aramco / ADNOC</strong></p>
-                <p>📍 Saudi Arabia | 💼 5-10 Yrs Exp</p>
-                <button class="apply-btn" onclick="openModal('Mechanical Engineer')">Quick Apply</button>
-            </div>
-            <div class="job-card">
-                <h3>Quality Assurance (Pharma)</h3>
-                <p><strong>Neopharma / LifePharma</strong></p>
-                <p>📍 Dubai | 💼 3-7 Yrs Exp</p>
-                <button class="apply-btn" onclick="openModal('Quality Assurance')">Quick Apply</button>
-            </div>
-            <div class="job-card">
-                <h3>Site Supervisor</h3>
-                <p><strong>HCC / Tata Projects</strong></p>
-                <p>📍 India (Multiple) | 💼 4-8 Yrs Exp</p>
-                <button class="apply-btn" onclick="openModal('Site Supervisor')">Quick Apply</button>
-            </div>
-            <div class="job-card">
-                <h3>Process Engineer</h3>
-                <p><strong>Petrofac / Worley</strong></p>
-                <p>📍 USA / Russia | 💼 8+ Yrs Exp</p>
-                <button class="apply-btn" onclick="openModal('Process Engineer')">Quick Apply</button>
+                <p>📍 Saudi Arabia | 💼 5-9 Yrs</p>
+                <button class="apply-btn" onclick="openModal('Safety Engineer')">QUICK APPLY</button>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section class="section" id="contact">
-        <h2 class="section-title">Contact Us</h2>
-        <div class="contact-box">
-            <div>
-                <h3>Get In Touch</h3>
-                <p style="margin: 20px 0;">Have questions about registration or current openings? Our team is available 24/7 to assist you.</p>
-                <p>📍 <strong>Head Office:</strong> Mumbai, India</p>
-                <p>📧 <strong>Email:</strong> support@primesjobs.com</p>
-                <p>⏰ <strong>Hours:</strong> Mon - Sat (10:00 AM - 7:00 PM)</p>
-            </div>
-            <div class="whatsapp-contact">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="60" alt="WA">
-                <h3>Chat with HR on WhatsApp</h3>
-                <span class="wa-num">+91 9911738261</span>
-                <button class="apply-btn" onclick="window.location.href='https://wa.me/919911738261?text=Hi, I want to know more about Primesjobs.'">Start Chat Now</button>
-            </div>
+    <!-- Full Registration Form (Candidate Details) -->
+    <section class="section" id="register" style="background: #e2e8f0;">
+        <h2 class="section-title">👤 Candidate Registration Portal</h2>
+        <div class="reg-form-container">
+            <form id="bottomForm">
+                <div class="form-grid">
+                    <div class="form-group"><label>Full Name</label><input type="text" id="b_name" placeholder="Enter Full Name" required></div>
+                    <div class="form-group"><label>Contact Number</label><input type="tel" id="b_phone" placeholder="+91" required></div>
+                    <div class="form-group"><label>Email ID</label><input type="email" id="b_email" placeholder="example@mail.com" required></div>
+                    <div class="form-group"><label>Preferred Location</label><input type="text" id="b_loc" placeholder="India / International"></div>
+                    <div class="form-group"><label>Preferred Designation</label><input type="text" id="b_desig" placeholder="Current Role / Target Role"></div>
+                    <div class="form-group"><label>Current Salary (Annual)</label><input type="text" id="b_cur_sal" placeholder="e.g. 6.5 LPA"></div>
+                    <div class="form-group"><label>Expected Salary</label><input type="text" id="b_exp_sal" placeholder="e.g. 10 LPA"></div>
+                    
+                    <div class="form-group full-width">
+                        <label>📎 Attachments (Updated Resume & ID Proof)</label>
+                        <div class="upload-area">
+                            <input type="file" multiple required id="b_files">
+                            <p>Click to upload <strong>Resume</strong> and <strong>ID Proof</strong> (Aadhar/PAN/Voter ID)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="fee-alert">
+                    <strong>💳 Payment Terms:</strong> Registration Fee ₹8,000. 
+                    Payable only <strong>after</strong> your interview is officially scheduled. 100% Refundable if no interview call is received.
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <input type="checkbox" id="b_agree" required> 
+                    <label for="b_agree" style="font-size: 13px; font-weight: bold;">I Agree to proceed and pay the registration fee after my interview schedule.</label>
+                </div>
+
+                <button type="submit" class="apply-btn" style="padding: 18px; font-size: 18px; background: var(--primary);">SUBMIT TO WHATSAPP</button>
+            </form>
         </div>
     </section>
 
-    <!-- Application Modal -->
+    <!-- Modal Form (Apply Now) -->
     <div id="regModal" class="modal">
         <div class="modal-content">
-            <span style="position:absolute; right:20px; top:15px; cursor:pointer; font-size:24px;" onclick="closeModal()">&times;</span>
-            <h2 style="color:var(--primary); margin-bottom:20px;">Registration Form</h2>
-            <form id="waForm">
-                <input type="hidden" id="jobName">
-                <div class="form-group"><label>Full Name</label><input type="text" id="uname" required></div>
-                <div class="form-group"><label>Mobile Number</label><input type="tel" id="umobile" required></div>
-                <div class="form-group">
-                    <label>Preferred Location</label>
-                    <select id="uloc" required>
-                        <option value="">Select Location</option>
-                        <option>Domestic (India)</option>
-                        <option>International (Gulf/USA/Singapore)</option>
-                    </select>
+            <span style="position:absolute; right:20px; top:15px; cursor:pointer; font-size:30px;" onclick="closeModal()">&times;</span>
+            <h2 style="color:var(--primary); margin-bottom:20px;">Application Form</h2>
+            <form id="modalForm">
+                <input type="hidden" id="m_job">
+                <div class="form-grid">
+                    <div class="form-group"><label>Full Name</label><input type="text" id="m_name" required></div>
+                    <div class="form-group"><label>Contact Number</label><input type="tel" id="m_phone" required></div>
+                    <div class="form-group"><label>Email ID</label><input type="email" id="m_email" required></div>
+                    <div class="form-group"><label>Preferred Location</label><input type="text" id="m_loc"></div>
+                    <div class="form-group"><label>Current Salary</label><input type="text" id="m_cur_sal"></div>
+                    <div class="form-group"><label>Expected Salary</label><input type="text" id="m_exp_sal"></div>
+                    <div class="form-group full-width">
+                        <label>📎 Attach Updated Resume & ID Proof</label>
+                        <div class="upload-area"><input type="file" multiple required></div>
+                    </div>
                 </div>
-                <div style="background:#fff3cd; padding:15px; border-radius:8px; font-size:13px; margin-bottom:20px;">
-                    <strong>Notice:</strong> Registration fee ₹8,000 applies. 100% refundable if no interview scheduled within 60 days.
-                </div>
-                <div style="margin-bottom:15px;">
-                    <input type="checkbox" required> <label style="font-size:12px; font-weight:bold;">I Agree to pay ₹8000 after interview schedule.</label>
-                </div>
-                <button type="submit" class="apply-btn" style="padding:15px;">SUBMIT & GET ACCOUNT DETAILS</button>
+                <div class="fee-alert">Fee ₹8,000 payable after interview schedule.</div>
+                <button type="submit" class="apply-btn">CONFIRM & APPLY</button>
             </form>
         </div>
     </div>
 
     <footer>
-        <p>&copy; 2026 Primesjobs Recruitment Services. All Rights Reserved.</p>
-        <div style="margin-top:15px; opacity:0.6; font-size:12px;">Connecting Talent with Opportunities Globally.</div>
+        <p>&copy; 2026 Primesjobs Recruitment Services. | WhatsApp: +91 9911738261</p>
+        <p style="font-size: 12px; margin-top: 10px; opacity: 0.7;">Connecting Professional Talent with World-Class Opportunities.</p>
     </footer>
 
     <script>
         const waNum = "919911738261";
-        function openModal(job) { 
-            document.getElementById('jobName').value = job;
-            document.getElementById('regModal').style.display = 'flex'; 
+
+        function openModal(job) {
+            document.getElementById('m_job').value = job;
+            document.getElementById('regModal').style.display = 'flex';
         }
-        function closeModal() { document.getElementById('regModal').style.display = 'none'; }
 
-        document.getElementById('waForm').onsubmit = function(e) {
-            e.preventDefault();
-            const name = document.getElementById('uname').value;
-            const mobile = document.getElementById('umobile').value;
-            const loc = document.getElementById('uloc').value;
-            const job = document.getElementById('jobName').value;
+        function closeModal() {
+            document.getElementById('regModal').style.display = 'none';
+        }
 
-            const msg = `*Primesjobs New Application*%0A%0A*Name:* ${name}%0A*Mobile:* ${mobile}%0A*Job:* ${job}%0A*Loc:* ${loc}%0A%0A*Status:* I AGREE to the ₹8000 fee. Please send account details.`;
+        // WhatsApp Redirection Logic
+        function sendToWA(data) {
+            const msg = `*New Application: Primesjobs*%0A%0A` +
+                        `*Name:* ${data.name}%0A` +
+                        `*Phone:* ${data.phone}%0A` +
+                        `*Job Role:* ${data.job}%0A` +
+                        `*Location:* ${data.loc}%0A` +
+                        `*Current Salary:* ${data.curSal}%0A` +
+                        `*Expected Salary:* ${data.expSal}%0A%0A` +
+                        `*Status:* I AGREE to the ₹8000 fee after interview schedule. Share account details.`;
+            
             window.location.href = `https://wa.me/${waNum}?text=${msg}`;
+        }
+
+        document.getElementById('bottomForm').onsubmit = function(e) {
+            e.preventDefault();
+            sendToWA({
+                name: document.getElementById('b_name').value,
+                phone: document.getElementById('b_phone').value,
+                job: document.getElementById('b_desig').value,
+                loc: document.getElementById('b_loc').value,
+                curSal: document.getElementById('b_cur_sal').value,
+                expSal: document.getElementById('b_exp_sal').value
+            });
+        };
+
+        document.getElementById('modalForm').onsubmit = function(e) {
+            e.preventDefault();
+            sendToWA({
+                name: document.getElementById('m_name').value,
+                phone: document.getElementById('m_phone').value,
+                job: document.getElementById('m_job').value,
+                loc: document.getElementById('m_loc').value,
+                curSal: document.getElementById('m_cur_sal').value,
+                expSal: document.getElementById('m_exp_sal').value
+            });
         };
     </script>
 </body>
